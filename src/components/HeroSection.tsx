@@ -24,7 +24,7 @@ const HeroSection = () => {
       style={{ background: "var(--gradient-hero)" }}
     >
       <div className="mx-auto max-w-content px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        
+
         {/* LEFT SIDE */}
         <div>
           <motion.p
@@ -100,10 +100,14 @@ const HeroSection = () => {
           className="flex justify-center md:justify-end"
         >
           <div
-            className="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-muted
-            border-4 border-border shadow-xl hover:scale-105 transition-transform duration-500 flex items-center justify-center text-muted-foreground font-body text-sm"
+            className="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden
+  border-4 border-border shadow-xl hover:scale-105 transition-transform duration-500"
           >
-            Photo Placeholder
+            <img
+              src="/Purusoth.png"
+              alt="Purusothaman M"
+              className="w-full h-full object-cover"
+            />
           </div>
         </motion.div>
 
