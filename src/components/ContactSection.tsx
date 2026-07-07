@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const ContactSection = () => {
@@ -8,24 +8,18 @@ const ContactSection = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
     <section id="contact" className="pt-[120px] pb-24">
       <div className="mx-auto max-w-content px-6">
-
         <motion.h2
           ref={sectionRef}
           initial={{ opacity: 0, y: 20 }}
@@ -42,25 +36,19 @@ const ContactSection = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="max-w-lg"
         >
-          {/* ✅ UPDATED TEXT ONLY */}
           <p className="font-body text-sm text-muted-foreground mb-6">
             I'm open to internships and entry-level developer opportunities. Feel free to reach out.
           </p>
 
-          {/* ✅ IMPROVED BUTTON (style only) */}
           <a
             href="/resume.pdf"
             download="Purusoth_Resume.pdf"
-            className="inline-flex items-center gap-2 font-body text-sm px-6 py-3 bg-foreground text-background rounded-md 
-            hover:bg-primary hover:scale-105 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 ease-out mb-10"
+            className="inline-flex items-center gap-2 font-body text-sm px-6 py-3 bg-foreground text-background rounded-md hover:bg-primary hover:scale-105 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 ease-out mb-10"
           >
-            📄 Download Resume
+            Download Resume
           </a>
 
-          {/* 🔥 YOUR ORIGINAL SOCIAL LINKS (UNCHANGED UI) */}
           <div className="space-y-4">
-
-            {/* GitHub */}
             <a
               href="https://github.com/Purusothaman5767"
               target="_blank"
@@ -75,11 +63,10 @@ const ContactSection = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-300 ease-out" />
               </span>
               <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
-                →
+                -&gt;
               </span>
             </a>
 
-            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/purusothaman-m-a173553b6"
               target="_blank"
@@ -94,11 +81,10 @@ const ContactSection = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-300 ease-out" />
               </span>
               <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
-                →
+                -&gt;
               </span>
             </a>
 
-            {/* Email */}
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=purusothaman5767@gmail.com"
               target="_blank"
@@ -114,10 +100,9 @@ const ContactSection = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-300 ease-out" />
               </span>
               <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
-                →
+                -&gt;
               </span>
             </a>
-
           </div>
         </motion.div>
       </div>

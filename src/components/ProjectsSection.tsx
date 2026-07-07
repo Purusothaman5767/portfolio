@@ -4,13 +4,13 @@ import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "Voting System",
-    desc: "A console-based voting system built using Java and MongoDB. It allows users to cast votes and stores the data securely.",
-    tech: ["Java", "MongoDB"],
-    image: "/voting.png",
-    github: "https://github.com/Purusothaman5767/VotingSystem",
-    demo: "",
-    role: "Developer",
+    title: "YouTube UI/UX Design",
+    desc: "Designed a modern YouTube interface in Figma with a focus on clean layouts, responsive design, and user-friendly experience.",
+    tech: ["Figma", "UI/UX", "Prototype"],
+    image: "/youtube-ui.png",
+    github: "",
+    demo: "", // Add your Figma prototype link here later
+    role: "UI/UX Designer",
     type: "Personal Project",
   },
   {
@@ -34,8 +34,9 @@ const ProjectsSection = () => {
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
+
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
@@ -43,7 +44,6 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="pt-[120px] pb-16" ref={ref}>
       <div className="mx-auto max-w-content px-6">
-
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -62,8 +62,6 @@ const ProjectsSection = () => {
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="group bg-card border border-border rounded-lg overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-300"
             >
-
-              {/* IMAGE */}
               <div className="overflow-hidden">
                 <img
                   src={p.image}
@@ -74,17 +72,14 @@ const ProjectsSection = () => {
               </div>
 
               <div className="p-5">
-                <h3 className="text-lg font-medium mb-2">
-                  {p.title}
-                </h3>
+                <h3 className="text-lg font-medium mb-2">{p.title}</h3>
 
                 <p className="text-sm text-muted-foreground mb-3">
                   {p.desc}
                 </p>
 
-                {/* 🔥 NEW: ROLE + TYPE */}
                 <p className="text-xs text-primary mb-3">
-                  {p.role} • {p.type}
+                  {p.role} | {p.type}
                 </p>
 
                 <div className="flex flex-wrap gap-1.5 mb-4">
@@ -99,17 +94,18 @@ const ProjectsSection = () => {
                 </div>
 
                 <div className="flex gap-3">
-                  <a
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <Github className="w-3.5 h-3.5" />
-                    GitHub
-                  </a>
+                  {p.github && (
+                    <a
+                      href={p.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                      GitHub
+                    </a>
+                  )}
 
-                  {/* 🔥 ONLY SHOW DEMO IF EXISTS */}
                   {p.demo && (
                     <a
                       href={p.demo}
@@ -122,12 +118,10 @@ const ProjectsSection = () => {
                     </a>
                   )}
                 </div>
-
               </div>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
