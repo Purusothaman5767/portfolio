@@ -39,9 +39,18 @@
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --gradient-hero: linear-gradient(135deg, hsl(220 20% 97%) 0%, hsl(224 40% 95%) 50%, hsl(220 30% 96%) 100%);
-    --shadow-card: 0 1px 3px 0 hsl(224 76% 48% / 0.04), 0 1px 2px -1px hsl(224 76% 48% / 0.04);
-    --shadow-card-hover: 0 10px 25px -5px hsl(224 76% 48% / 0.08), 0 8px 10px -6px hsl(224 76% 48% / 0.04);
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(220 20% 97%) 0%,
+      hsl(224 40% 95%) 50%,
+      hsl(220 30% 96%) 100%
+    );
+
+    --shadow-card: 0 1px 3px 0 hsl(224 76% 48% / 0.04),
+                   0 1px 2px -1px hsl(224 76% 48% / 0.04);
+
+    --shadow-card-hover: 0 10px 25px -5px hsl(224 76% 48% / 0.08),
+                         0 8px 10px -6px hsl(224 76% 48% / 0.04);
   }
 }
 

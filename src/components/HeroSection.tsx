@@ -57,6 +57,15 @@ const HeroSection = () => {
     requestAnimationFrame(animate);
   };
 
+  const handleScrollDown = () => {
+    const el = document.getElementById("about");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       className="relative min-h-screen flex items-center overflow-hidden"
@@ -125,19 +134,21 @@ const HeroSection = () => {
             transition={{ delay: 0.5 }}
             className="flex gap-4 flex-wrap"
           >
-            <button
+            <motion.button
+              whileTap={{ scale: 0.95 }}
               onClick={handleViewProjects}
               className="px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:scale-105 hover:shadow-xl transition-all duration-300"
             >
               🚀 View My Work
-            </button>
-            <a
+            </motion.button>
+            <motion.a
+              whileTap={{ scale: 0.95 }}
               href="/resume.pdf"
               download="Purusoth_Resume.pdf"
               className="px-6 py-3 rounded-lg border border-border hover:border-primary hover:text-primary hover:scale-105 transition-all duration-300"
             >
               📄 Download Resume
-            </a>
+            </motion.a>
           </motion.div>
         </div>
 
@@ -154,6 +165,19 @@ const HeroSection = () => {
         >
           {/* Glow Behind Image */}
           <div className="absolute w-80 h-80 rounded-full bg-primary/20 blur-3xl animate-pulse" />
+
+          {/* NEW: Rotating gradient ring behind the photo */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+            className="absolute w-72 h-72 sm:w-[22rem] sm:h-[22rem] rounded-full"
+            style={{
+              background:
+                "conic-gradient(from 0deg, var(--primary, #6366f1), transparent 40%, var(--primary, #6366f1))",
+              opacity: 0.35,
+              filter: "blur(2px)",
+            }}
+          />
 
           {/* Profile Image */}
           <motion.div
@@ -179,6 +203,27 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* NEW: Scroll-down indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.6 }}
+        onClick={handleScrollDown}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 cursor-pointer flex flex-col items-center gap-2"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+          className="w-6 h-10 rounded-full border-2 border-muted-foreground/40 flex justify-center pt-2"
+        >
+          <motion.div
+            animate={{ y: [0, 6, 0], opacity: [1, 0, 1] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+            className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60"
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

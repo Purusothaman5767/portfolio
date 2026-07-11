@@ -43,9 +43,16 @@ const EducationSection = () => {
           initial={{ opacity: 0, y: 25 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-3xl font-semibold tracking-tight mb-12"
+          className="relative inline-block text-3xl font-semibold tracking-tight mb-12"
         >
           Education
+          {/* NEW: animated underline reveal */}
+          <motion.span
+            initial={{ width: 0 }}
+            animate={isVisible ? { width: "100%" } : { width: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            className="absolute left-0 -bottom-1 h-[3px] bg-primary rounded-full"
+          />
         </motion.h2>
 
         {/* Timeline */}
@@ -57,6 +64,18 @@ const EducationSection = () => {
             animate={isVisible ? { height: "100%" } : {}}
             transition={{ duration: 1 }}
             className="absolute left-6 top-0 w-[2px] bg-primary/30 origin-top"
+          />
+
+          {/* NEW: traveling dot animating down the line */}
+          <motion.div
+            initial={{ top: 0, opacity: 0 }}
+            animate={
+              isVisible
+                ? { top: "100%", opacity: [0, 1, 1, 0] }
+                : { top: 0, opacity: 0 }
+            }
+            transition={{ duration: 1.2, delay: 0.2, ease: "easeInOut" }}
+            className="absolute left-6 w-[6px] h-[6px] -translate-x-1/2 rounded-full bg-primary shadow-[0_0_8px_2px_rgba(59,130,246,0.5)]"
           />
 
           <div className="space-y-8">
@@ -76,7 +95,21 @@ const EducationSection = () => {
               >
                 {/* Timeline Icon */}
                 <div className="absolute left-0 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-primary/30 bg-background shadow-md transition-all duration-300 hover:scale-110 hover:rotate-12 hover:border-primary hover:shadow-lg">
-                  <GraduationCap className="h-6 w-6 text-primary" />
+                  {/* NEW: pulsing ring behind the icon */}
+                  <motion.span
+                    animate={{
+                      scale: [1, 1.6, 1],
+                      opacity: [0.5, 0, 0.5],
+                    }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 2.5,
+                      ease: "easeInOut",
+                      delay: i * 0.4,
+                    }}
+                    className="absolute inset-0 rounded-full border border-primary/40"
+                  />
+                  <GraduationCap className="h-6 w-6 text-primary relative z-10" />
                 </div>
 
                 {/* Card */}
