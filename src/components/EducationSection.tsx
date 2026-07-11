@@ -7,7 +7,7 @@ const education = [
     period: "2023 - Present",
     degree: "B.Tech Information Technology",
     college: "Sri Shakthi Institute of Engineering and Technology, Coimbatore",
-    detail: "CGPA: 6.9",
+    detail: "CGPA: 7.02",
   },
   {
     period: "2019 - 2023",
