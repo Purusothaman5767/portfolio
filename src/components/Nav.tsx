@@ -58,11 +58,11 @@ const Nav = () => {
         paddingBottom: scrolled ? 10 : 16,
       }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b transition-colors duration-300 ${
-        scrolled ? "border-border shadow-sm" : "border-border/0"
+      className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b transition-colors duration-300 ${
+        scrolled ? "border-gray-200 shadow-sm" : "border-transparent"
       }`}
     >
-      <div className="mx-auto max-w-content px-6 flex items-center justify-between">
+      <div className="mx-auto max-w-7xl px-6 flex items-center justify-between">
         <motion.span
           animate={{ fontSize: scrolled ? "1rem" : "1.125rem" }}
           transition={{ duration: 0.3 }}
@@ -81,8 +81,8 @@ const Nav = () => {
                 onClick={() => handleClick(s)}
                 className={`relative text-sm font-body transition-colors pb-1 ${
                   isActive
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-gray-900"
+                    : "text-gray-500 hover:text-gray-900"
                 }`}
               >
                 {s}
@@ -101,7 +101,7 @@ const Nav = () => {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen((prev) => !prev)}
-          className="sm:hidden p-2 text-foreground"
+          className="sm:hidden p-2 text-gray-900"
           aria-label="Toggle menu"
         >
           <AnimatePresence mode="wait" initial={false}>
@@ -140,7 +140,7 @@ const Nav = () => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="sm:hidden overflow-hidden border-t border-border"
+            className="sm:hidden overflow-hidden border-t border-gray-200"
           >
             <div className="flex flex-col px-6 py-4 gap-4">
               {sections.map((s, index) => (
@@ -153,7 +153,7 @@ const Nav = () => {
                   className={`text-left text-sm font-body transition-colors ${
                     activeSection === s
                       ? "text-primary font-medium"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-gray-500 hover:text-gray-900"
                   }`}
                 >
                   {s}

@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------
+   Base Layer: Variables & Fonts
+--------------------------------*/
 @layer base {
   :root {
     --background: 220 20% 97%;
@@ -46,21 +49,26 @@
       hsl(220 30% 96%) 100%
     );
 
-    --shadow-card: 0 1px 3px 0 hsl(224 76% 48% / 0.04),
-                   0 1px 2px -1px hsl(224 76% 48% / 0.04);
+    --shadow-card: 
+      0 1px 3px 0 hsl(224 76% 48% / 0.04),
+      0 1px 2px -1px hsl(224 76% 48% / 0.04);
 
-    --shadow-card-hover: 0 10px 25px -5px hsl(224 76% 48% / 0.08),
-                         0 8px 10px -6px hsl(224 76% 48% / 0.04);
+    --shadow-card-hover: 
+      0 10px 25px -5px hsl(224 76% 48% / 0.08),
+      0 8px 10px -6px hsl(224 76% 48% / 0.04);
   }
 }
 
+/* ------------------------------
+   Global Styles
+--------------------------------*/
 @layer base {
   * {
     @apply border-border;
   }
 
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth; /* ✅ better UX */
   }
 
   body {
@@ -73,6 +81,9 @@
   }
 }
 
+/* ------------------------------
+   Utilities
+--------------------------------*/
 @layer utilities {
   .hover-lift {
     @apply transition-all duration-300 ease-out;

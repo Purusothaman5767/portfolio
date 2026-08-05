@@ -12,18 +12,17 @@ const SectionDivider = () => {
       },
       { threshold: 0.3 }
     );
-
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="mx-auto max-w-content px-6" ref={ref}>
+    <div className="mx-auto max-w-7xl px-6" ref={ref}>
       <motion.hr
         initial={{ scaleX: 0, opacity: 0 }}
         animate={isVisible ? { scaleX: 1, opacity: 1 } : {}}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="border-t border-border origin-left"
+        className="border-t border-gray-300 origin-left"
       />
     </div>
   );

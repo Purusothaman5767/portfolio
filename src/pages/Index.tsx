@@ -3,7 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import SectionDivider from "@/components/SectionDivider";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
-import ProjectsSection from "@/components/ProjectsSection";
+import ProjectsSection from "@/components/ProjectsSection"; // ✅ fixed import
 import EducationSection from "@/components/EducationSection";
 import ContactSection from "@/components/ContactSection";
 
