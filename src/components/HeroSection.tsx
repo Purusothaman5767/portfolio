@@ -36,7 +36,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-tr from-blue-50 via-teal-50 to-purple-100">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
       {/* Moving Glow */}
       <motion.div
         animate={{ x: mousePosition.x - 150, y: mousePosition.y - 150 }}
