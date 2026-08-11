@@ -19,10 +19,8 @@ import {
   Check,
   Eye,
   Ear,
-  StickyNote,
   Image as ImageIcon,
-  PenTool,
-  NotebookPen,
+  Palette,
 } from "lucide-react";
 
 const skills = [
@@ -44,12 +42,11 @@ const skills = [
   { name: "Usability Testing", desc: "Test designs with users to refine experiences.", icon: ClipboardCheck, animation: "usabilityTesting" },
 ];
 
+// Tools I Use — kept to Figma, Canva, Photoshop per request.
 const tools = [
-  { name: "Figma", desc: "Design & prototype interfaces", icon: Figma },
-  { name: "FigJam", desc: "Brainstorm ideas on a whiteboard", icon: StickyNote },
-  { name: "Photoshop", desc: "Edit & retouch photos", icon: ImageIcon },
-  { name: "Illustrator", desc: "Create vector graphics & icons", icon: PenTool },
-  { name: "Notion", desc: "Organize notes & documentation", icon: NotebookPen },
+  { name: "Figma", desc: "Design & prototype interfaces", icon: Figma, animation: "figma" },
+  { name: "Canva", desc: "Create templates & quick graphics", icon: Palette, animation: "canva" },
+  { name: "Photoshop", desc: "Edit & retouch photos", icon: ImageIcon, animation: "photoshop" },
 ];
 
 // Delay (ms) before the in-box animation reveals itself on hover
@@ -164,14 +161,10 @@ const SkillCard = ({ skill, index, isVisible }: SkillCardProps) => {
 };
 
 // ============= PER-SKILL DEMO ANIMATIONS =============
-// Each demo is intentionally small and scoped to the card's footprint.
-// `hovered` is always true here since the wrapper only mounts on hover,
-// so animate values are the "active" state directly.
+// (unchanged from the original file)
 
 const SkillDemo = ({ type }: { type: string }) => {
   switch (type) {
-    // FIGMA — a cursor literally drags out a box on a blank canvas, then it
-    // gets styled with color. Shows the "draw it, then style it" workflow.
     case "figma":
       return (
         <div className="flex flex-col items-center justify-center w-full h-full gap-3">
@@ -204,8 +197,6 @@ const SkillDemo = ({ type }: { type: string }) => {
         </div>
       );
 
-    // AUTO LAYOUT — a new item drops into a stack and the existing items
-    // automatically make room, no manual repositioning
     case "autoLayout":
       return (
         <div className="flex flex-col items-center justify-center w-full h-full gap-3">
@@ -226,7 +217,6 @@ const SkillDemo = ({ type }: { type: string }) => {
         </div>
       );
 
-    // COMPONENTS — a solid "master" component spawns two dashed instances
     case "components":
       return (
         <div className="flex items-center justify-center w-full h-full gap-5">
@@ -253,8 +243,6 @@ const SkillDemo = ({ type }: { type: string }) => {
         </div>
       );
 
-    // VARIANTS — the SAME button visibly reacts as a cursor hovers then
-    // clicks it, with a caption naming each state as it happens
     case "variants": {
       const labels = ["Default", "Hover", "Clicked"];
       return (
@@ -306,8 +294,6 @@ const SkillDemo = ({ type }: { type: string }) => {
       );
     }
 
-    // DESIGN SYSTEMS — one color swatch pulses, and every real UI piece
-    // (button, card, link) built from it updates at the same moment
     case "designSystems":
       return (
         <div className="flex flex-col items-center justify-center w-full h-full gap-4">
@@ -347,9 +333,6 @@ const SkillDemo = ({ type }: { type: string }) => {
         </div>
       );
 
-    // WIREFRAMING — the blocks draw themselves AND get labeled with what
-    // they represent (Header, Image, Text, Button) — the actual skeleton
-    // of a webpage before it's designed
     case "wireframing": {
       const blocks = [
         { x: 10, y: 10, w: 180, h: 22, label: "Header", delay: 0 },
@@ -390,8 +373,6 @@ const SkillDemo = ({ type }: { type: string }) => {
       );
     }
 
-    // INTERACTIVE PROTOTYPING — a cursor clicks screen one, a connector draws
-    // across, and a ripple pulses on the linked screen
     case "prototyping":
       return (
         <div className="flex flex-col items-center justify-center w-full h-full gap-2">
@@ -429,8 +410,6 @@ const SkillDemo = ({ type }: { type: string }) => {
         </div>
       );
 
-    // USER RESEARCH — a magnifying glass sweeps over data points, lighting
-    // each one up as it "discovers" an insight
     case "userResearch": {
       const dots = [
         { x: 40, y: 40 }, { x: 90, y: 28 }, { x: 140, y: 48 },
@@ -465,8 +444,6 @@ const SkillDemo = ({ type }: { type: string }) => {
       );
     }
 
-    // USER FLOWS — numbered steps light up in sequence, connectors filling
-    // between them like a journey being traced
     case "userFlows":
       return (
         <div className="flex flex-col items-center justify-center w-full h-full gap-4">
@@ -497,8 +474,6 @@ const SkillDemo = ({ type }: { type: string }) => {
         </div>
       );
 
-    // INFORMATION ARCHITECTURE — a root node branches into labeled child
-    // nodes (Home, About, Contact), like a real website sitemap forming
     case "infoArchitecture": {
       const nodes = [
         { x: 8, cx: 23, label: "Home" },
@@ -545,9 +520,6 @@ const SkillDemo = ({ type }: { type: string }) => {
       );
     }
 
-    // RESPONSIVE DESIGN — a labeled phone and a labeled laptop side by side,
-    // both showing the SAME content stacked vs side-by-side, so it's
-    // obviously one design adapting to two real devices
     case "responsive":
       return (
         <div className="flex flex-col items-center justify-center w-full h-full gap-4">
@@ -580,9 +552,6 @@ const SkillDemo = ({ type }: { type: string }) => {
         </div>
       );
 
-    // ACCESSIBILITY — three real user needs (sight, hearing, motor
-    // control) are checked off one by one, making "designed for everyone"
-    // concrete instead of abstract
     case "accessibility": {
       const needs = [
         { Icon: Eye, label: "Low vision" },
@@ -614,8 +583,6 @@ const SkillDemo = ({ type }: { type: string }) => {
       );
     }
 
-    // TYPOGRAPHY — cramped, hard-to-read text visibly relaxes into
-    // spaced-out, readable text. The difference IS the explanation.
     case "typography":
       return (
         <div className="flex flex-col items-center justify-center w-full h-full gap-4">
@@ -651,8 +618,6 @@ const SkillDemo = ({ type }: { type: string }) => {
         </div>
       );
 
-    // COLOR THEORY — each color is paired with the real meaning it signals
-    // to users (red = urgent, blue = calm/trust, green = success)
     case "colorTheory": {
       const colors = [
         { bg: "#ef4444", label: "Urgent" },
@@ -685,9 +650,6 @@ const SkillDemo = ({ type }: { type: string }) => {
       );
     }
 
-    // INTERACTION DESIGN — a cursor visibly taps a "Like" button, it presses
-    // down, ripples, and the icon flips to a filled heart — showing that
-    // interaction design is about the response a tap gives you
     case "interaction":
       return (
         <div className="flex flex-col items-center justify-center w-full h-full gap-4">
@@ -730,9 +692,6 @@ const SkillDemo = ({ type }: { type: string }) => {
         </div>
       );
 
-    // USABILITY TESTING — a person tries clicking through a real 3-step
-    // flow, gets stuck on one step (shown red), then it's fixed (green) —
-    // literally "watch a real person use it, then fix what confuses them"
     case "usabilityTesting":
       return (
         <div className="flex flex-col items-center justify-center w-full h-full gap-4">
@@ -776,69 +735,353 @@ const SkillDemo = ({ type }: { type: string }) => {
   }
 };
 
-// ============= TOOL CARD (same 1s hover → white reveal pattern) =============
+// ============================================================
+// FULL-SCREEN TOOL ANIMATIONS (click-triggered)
+// ------------------------------------------------------------
+// These render inside a fixed, viewport-covering layer created in
+// SkillsSection below. Everything here is positioned with % values
+// so it fills the whole screen rather than a single card.
+// ============================================================
 
-const ToolCard = ({ tool, index }: { tool: (typeof tools)[number]; index: number }) => {
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [hovered, setHovered] = useState(false);
+const FS_LABEL =
+  "absolute text-[11px] md:text-xs font-medium text-gray-500 bg-white/70 backdrop-blur-sm px-2 py-0.5 rounded-full";
 
-  const handleMouseEnter = () => {
-    timerRef.current = setTimeout(() => setHovered(true), HOVER_TRIGGER_DELAY);
-  };
-  const handleMouseLeave = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-    setHovered(false);
-  };
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
+const FigmaFullScreenScene = () => {
+  const artboards = [
+    { top: "12%", left: "8%", w: "20%", h: "26%", delay: 0 },
+    { top: "16%", left: "62%", w: "24%", h: "22%", delay: 0.15 },
+    { top: "56%", left: "16%", w: "18%", h: "24%", delay: 0.3 },
+    { top: "60%", left: "68%", w: "20%", h: "20%", delay: 0.45 },
+  ];
+  // connector endpoints, expressed as % of viewport, matched to the
+  // artboards above so lines visually plug into their edges.
+  const connectors = [
+    { d: "M28 25 C 45 25, 45 27, 62 27", delay: 0.6 },
+    { d: "M72 42 C 60 50, 45 55, 25 58", delay: 0.85 },
+    { d: "M34 75 C 50 78, 55 72, 68 68", delay: 1.1 },
+  ];
 
   return (
-    <motion.div
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+    <div className="absolute inset-0">
+      {artboards.map((a, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-lg border-2 border-indigo-400/40 bg-white/40"
+          style={{ top: a.top, left: a.left, width: a.w, height: a.h }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: [16, 0, -6, 0] }}
+          transition={{
+            opacity: { duration: 0.6, delay: a.delay },
+            y: { duration: 6 + i, repeat: Infinity, ease: "easeInOut", delay: a.delay },
+          }}
+        >
+          {/* component chips inside each artboard */}
+          <motion.div
+            className="absolute rounded-sm bg-indigo-400/25"
+            style={{ top: "14%", left: "10%", width: "45%", height: "14%" }}
+            animate={{ opacity: [0.3, 0.55, 0.3] }}
+            transition={{ duration: 3, repeat: Infinity, delay: a.delay + 0.3 }}
+          />
+          <motion.div
+            className="absolute rounded-sm bg-indigo-400/15"
+            style={{ top: "34%", left: "10%", width: "70%", height: "10%" }}
+            animate={{ opacity: [0.2, 0.4, 0.2] }}
+            transition={{ duration: 3.2, repeat: Infinity, delay: a.delay + 0.5 }}
+          />
+        </motion.div>
+      ))}
+
+      {/* prototype connector lines linking artboards */}
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+        {connectors.map((c, i) => (
+          <motion.path
+            key={i}
+            d={c.d}
+            fill="none"
+            stroke="#6366f1"
+            strokeWidth="0.35"
+            strokeDasharray="1.4 1.4"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.55 }}
+            transition={{ duration: 1.4, ease: "easeInOut", delay: c.delay }}
+          />
+        ))}
+      </svg>
+
+      {/* pulsing connection nodes */}
+      <motion.span className="absolute rounded-full" style={{ top: "25%", left: "27%", width: 9, height: 9, background: "#F24E1E" }}
+        animate={{ opacity: [0.3, 0.9, 0.3], scale: [1, 1.3, 1] }} transition={{ duration: 2.4, repeat: Infinity }} />
+      <motion.span className="absolute rounded-full" style={{ top: "42%", left: "70%", width: 9, height: 9, background: "#A259FF" }}
+        animate={{ opacity: [0.3, 0.9, 0.3], scale: [1, 1.3, 1] }} transition={{ duration: 2.6, repeat: Infinity, delay: 0.4 }} />
+      <motion.span className="absolute rounded-full" style={{ top: "68%", left: "30%", width: 9, height: 9, background: "#0ACF83" }}
+        animate={{ opacity: [0.3, 0.9, 0.3], scale: [1, 1.3, 1] }} transition={{ duration: 2.8, repeat: Infinity, delay: 0.8 }} />
+
+      {/* a cursor gliding between two screens, like a live prototype click-through */}
+      <motion.g />
+      <motion.div
+        className="absolute"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: [0, 1, 1, 0],
+          left: ["18%", "18%", "64%", "64%"],
+          top: ["24%", "24%", "26%", "26%"],
+        }}
+        transition={{ duration: 3.2, repeat: Infinity, repeatDelay: 1, ease: "easeInOut" }}
+      >
+        <svg width="18" height="18" viewBox="0 0 16 16">
+          <path d="M0 0 L0 12 L3.5 9 L5.5 14 L7.5 13 L5.5 8 L9.5 8 Z" fill="#1f2937" />
+        </svg>
+      </motion.div>
+
+      <div className={FS_LABEL} style={{ bottom: "10%", left: "50%", transform: "translateX(-50%)" }}>
+        Prototyping the flow, screen to screen
+      </div>
+    </div>
+  );
+};
+
+const CanvaFullScreenScene = () => {
+  return (
+    <div className="absolute inset-0">
+      {/* the canvas itself, centered */}
+      <motion.div
+        className="absolute rounded-xl border-2 border-dashed border-gray-300 bg-white/50"
+        style={{ top: "14%", left: "30%", width: "40%", height: "58%" }}
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        {/* photo block sliding in */}
+        <motion.div
+          className="absolute rounded-md overflow-hidden"
+          style={{ top: "8%", left: "8%", width: "40%", height: "34%" }}
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: [0, 1, 1, 1], x: [-40, 0, 0, 0] }}
+          transition={{ duration: 6, repeat: Infinity, times: [0, 0.12, 0.5, 1], ease: "easeOut" }}
+        >
+          <div className="w-full h-full bg-gradient-to-br from-teal-300/60 to-sky-400/50" />
+        </motion.div>
+
+        {/* text lines appearing/typing */}
+        <motion.div
+          className="absolute h-[10%] rounded-full bg-gray-800/70"
+          style={{ top: "10%", right: "8%", width: "0%" }}
+          animate={{ width: ["0%", "38%", "38%", "0%"] }}
+          transition={{ duration: 6, repeat: Infinity, times: [0, 0.22, 0.55, 0.62], ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute h-[7%] rounded-full bg-gray-400/60"
+          style={{ top: "24%", right: "8%", width: "0%" }}
+          animate={{ width: ["0%", "26%", "26%", "0%"] }}
+          transition={{ duration: 6, repeat: Infinity, times: [0, 0.28, 0.55, 0.62], ease: "easeInOut" }}
+        />
+
+        {/* shape sliding into place */}
+        <motion.div
+          className="absolute rounded-full bg-orange-400/50"
+          style={{ bottom: "10%", left: "10%", width: "14%", height: "14%" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: [0, 1, 1, 0], y: [20, 0, 0, 20] }}
+          transition={{ duration: 6, repeat: Infinity, times: [0, 0.4, 0.62, 0.7], ease: "easeOut" }}
+        />
+        <motion.div
+          className="absolute bg-purple-400/50"
+          style={{
+            bottom: "12%",
+            right: "14%",
+            width: 0,
+            height: 0,
+            borderLeft: "10px solid transparent",
+            borderRight: "10px solid transparent",
+            borderBottom: "16px solid rgba(168,85,247,0.5)",
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: [0, 1, 1, 0], y: [20, 0, 0, 20] }}
+          transition={{ duration: 6, repeat: Infinity, times: [0, 0.46, 0.62, 0.7], ease: "easeOut", delay: 0.1 }}
+        />
+
+        {/* color palette dots appearing */}
+        <div className="absolute flex gap-1.5" style={{ bottom: "4%", left: "8%" }}>
+          {["#14b8a6", "#f97316", "#a855f7", "#0ea5e9"].map((c, i) => (
+            <motion.span
+              key={c}
+              className="rounded-full"
+              style={{ width: 8, height: 8, background: c }}
+              animate={{ opacity: [0, 1, 1, 0], scale: [0, 1, 1, 0] }}
+              transition={{ duration: 6, repeat: Infinity, times: [0, 0.55 + i * 0.02, 0.62, 0.66], ease: "easeOut" }}
+            />
+          ))}
+        </div>
+
+        {/* whole design fades and a second layout takes over */}
+        <motion.div
+          className="absolute inset-0 rounded-xl bg-white"
+          animate={{ opacity: [0, 0, 0, 1, 0, 0] }}
+          transition={{ duration: 6, repeat: Infinity, times: [0, 0.68, 0.72, 0.8, 0.92, 1] }}
+        >
+          <motion.div
+            className="absolute inset-4 rounded-lg bg-gradient-to-tr from-fuchsia-300/50 to-amber-300/50"
+            animate={{ opacity: [0, 1, 1, 0] }}
+            transition={{ duration: 6, repeat: Infinity, times: [0, 0.74, 0.9, 0.98] }}
+          />
+        </motion.div>
+      </motion.div>
+
+      <div className={FS_LABEL} style={{ bottom: "10%", left: "50%", transform: "translateX(-50%)" }}>
+        Building a design, piece by piece
+      </div>
+    </div>
+  );
+};
+
+const PhotoshopFullScreenScene = () => {
+  return (
+    <div className="absolute inset-0">
+      <motion.div
+        className="absolute rounded-lg overflow-hidden border border-gray-300/70 bg-white/40"
+        style={{ top: "14%", left: "30%", width: "40%", height: "58%" }}
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        {/* base photo, tone gradually shifting (before -> after) */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{
+            background: [
+              "linear-gradient(135deg, rgba(148,163,184,0.45), rgba(100,116,139,0.35))",
+              "linear-gradient(135deg, rgba(148,163,184,0.45), rgba(100,116,139,0.35))",
+              "linear-gradient(135deg, rgba(56,189,248,0.4), rgba(99,102,241,0.35))",
+              "linear-gradient(135deg, rgba(56,189,248,0.4), rgba(99,102,241,0.35))",
+              "linear-gradient(135deg, rgba(148,163,184,0.45), rgba(100,116,139,0.35))",
+            ],
+          }}
+          transition={{ duration: 7, repeat: Infinity, times: [0, 0.2, 0.55, 0.85, 1], ease: "easeInOut" }}
+        />
+
+        {/* marching-ants selection around a "subject" */}
+        <motion.div
+          className="absolute rounded-full"
+          style={{
+            top: "18%",
+            left: "20%",
+            width: "34%",
+            height: "40%",
+            border: "1.5px dashed rgba(99,102,241,0.85)",
+          }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: [0, 1, 1, 1, 0], rotate: [0, 360], scale: [0.9, 1, 1, 1, 0.9] }}
+          transition={{
+            opacity: { duration: 7, repeat: Infinity, times: [0, 0.08, 0.3, 0.42, 0.48] },
+            rotate: { duration: 6, repeat: Infinity, ease: "linear" },
+            scale: { duration: 7, repeat: Infinity, times: [0, 0.08, 0.3, 0.42, 0.48] },
+          }}
+        />
+
+        {/* crop guides */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{ opacity: [0, 0, 1, 1, 0, 0] }}
+          transition={{ duration: 7, repeat: Infinity, times: [0, 0.46, 0.5, 0.58, 0.62, 1] }}
+        >
+          <div className="absolute left-1/3 top-0 bottom-0 w-px bg-indigo-400/60" />
+          <div className="absolute left-2/3 top-0 bottom-0 w-px bg-indigo-400/60" />
+          <div className="absolute top-1/3 left-0 right-0 h-px bg-indigo-400/60" />
+          <div className="absolute top-2/3 left-0 right-0 h-px bg-indigo-400/60" />
+        </motion.div>
+
+        {/* layer strips sliding in from the side */}
+        {[0, 1, 2].map((i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-sm border border-blue-400/50 bg-blue-400/10"
+            style={{ top: `${10 + i * 6}%`, right: "-40%", width: "34%", height: "20%" }}
+            animate={{ opacity: [0, 0, 1, 1, 0, 0], right: ["-40%", "-40%", "4%", "4%", "-40%", "-40%"] }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              times: [0, 0.6 + i * 0.02, 0.66 + i * 0.02, 0.78, 0.84, 1],
+              ease: "easeOut",
+            }}
+          />
+        ))}
+
+        {/* brush stroke revealing an edit */}
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <motion.path
+            d="M20 78 C 34 66, 48 82, 62 68 S 84 54, 90 46"
+            fill="none"
+            stroke="#6366f1"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 0.6, 0.6, 0] }}
+            transition={{ duration: 7, repeat: Infinity, times: [0, 0.2, 0.4, 0.46], ease: "easeInOut" }}
+          />
+        </svg>
+      </motion.div>
+
+      <div className={FS_LABEL} style={{ bottom: "10%", left: "50%", transform: "translateX(-50%)" }}>
+        Select, adjust, refine — before to after
+      </div>
+    </div>
+  );
+};
+
+const ToolFullScreenScene = ({ type }: { type: string }) => {
+  switch (type) {
+    case "figma":
+      return <FigmaFullScreenScene />;
+    case "canva":
+      return <CanvaFullScreenScene />;
+    case "photoshop":
+      return <PhotoshopFullScreenScene />;
+    default:
+      return null;
+  }
+};
+
+// ============= TOOL CARD (click to trigger full-screen demo) =============
+
+type ToolCardProps = {
+  tool: (typeof tools)[number];
+  index: number;
+  isActive: boolean;
+  onToggle: (animation: string) => void;
+};
+
+const ToolCard = ({ tool, index, isActive, onToggle }: ToolCardProps) => {
+  return (
+    <motion.button
+      type="button"
+      onClick={() => onToggle(tool.animation)}
+      aria-pressed={isActive}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      whileHover={{ y: -3 }}
-      className="relative overflow-hidden px-4 py-2 rounded-lg bg-white border border-gray-200 shadow-sm text-gray-700 font-medium transition-all duration-300 hover:border-indigo-500 hover:text-indigo-500 min-w-[110px] text-center"
+      whileHover={{ y: -4 }}
+      whileTap={{ scale: 0.97 }}
+      className={`group relative overflow-hidden rounded-xl bg-white border shadow-sm px-8 py-8 min-w-[190px] min-h-[150px] flex flex-col items-center justify-center gap-2 text-center transition-all duration-300 hover:shadow-[0_12px_30px_rgba(99,102,241,0.15)] ${
+        isActive
+          ? "border-indigo-500 ring-2 ring-indigo-500/30 shadow-[0_12px_30px_rgba(99,102,241,0.2)]"
+          : "border-gray-200 hover:border-indigo-500/40"
+      }`}
     >
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            key="anim"
-            className="absolute inset-0 z-20 bg-white rounded-lg flex flex-col items-center justify-center gap-1 px-2"
-            initial={{ opacity: 0, backdropFilter: "blur(6px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(0px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(6px)" }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: [0, 1.2, 1] }}
-              transition={{ duration: 0.4 }}
-            >
-              <tool.icon className="w-5 h-5 text-indigo-500" />
-            </motion.div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.15, duration: 0.3 }}
-              className="text-[10px] text-gray-500 font-medium text-center leading-tight"
-            >
-              {tool.desc}
-            </motion.p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <span className="relative z-10">{tool.name}</span>
-    </motion.div>
+      <tool.icon
+        className={`w-7 h-7 transition-transform duration-300 group-hover:scale-110 ${
+          isActive ? "text-indigo-600" : "text-indigo-500"
+        }`}
+      />
+      <span className="font-semibold text-gray-900">{tool.name}</span>
+      <span className="text-xs text-gray-500">{tool.desc}</span>
+      <span
+        className={`text-[10px] font-medium mt-1 transition-colors ${
+          isActive ? "text-indigo-500" : "text-indigo-500/50 group-hover:text-indigo-500"
+        }`}
+      >
+        {isActive ? "Tap to close" : "Tap to see it in action"}
+      </span>
+    </motion.button>
   );
 };
 
@@ -846,7 +1089,9 @@ const ToolCard = ({ tool, index }: { tool: (typeof tools)[number]; index: number
 
 const SkillsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [activeTool, setActiveTool] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
+  const toolsWrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -859,9 +1104,75 @@ const SkillsSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Click outside the "Tools I Use" row closes the full-screen demo.
+  useEffect(() => {
+    if (!activeTool) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (toolsWrapRef.current && !toolsWrapRef.current.contains(e.target as Node)) {
+        setActiveTool(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [activeTool]);
+
+  // Escape key also closes it.
+  useEffect(() => {
+    if (!activeTool) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveTool(null);
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [activeTool]);
+
+  const handleToolClick = (animation: string) => {
+    setActiveTool((prev) => (prev === animation ? null : animation));
+  };
+
   return (
-    <section id="skills" className="pt-[120px] pb-20 bg-gray-50" ref={ref}>
-      <div className="mx-auto max-w-7xl px-6">
+    // `isolate` scopes the fixed full-screen layer's stacking to this
+    // section, so it renders behind this section's own heading/grid/tools
+    // without needing to touch any other section of the site.
+    <section id="skills" className="relative isolate pt-[120px] pb-20" ref={ref}>
+      {/* Section background — fades back when a tool demo is active so the
+          full-screen animation layer beneath it becomes visible. */}
+      <motion.div
+        className="absolute inset-0 -z-10 bg-gray-50"
+        animate={{ opacity: activeTool ? 0 : 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      />
+
+      {/* Full-screen animated layer. Fixed to the viewport, sits behind
+          this section's content (z-10 below), above the section bg. */}
+      <AnimatePresence>
+        {activeTool && (
+          <motion.div
+            key="tool-fullscreen-layer"
+            className="fixed inset-0 z-[999] pointer-events-none overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+          >
+            <div className="absolute inset-0 bg-white/70" />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTool}
+                className="absolute inset-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
+                <ToolFullScreenScene type={activeTool} />
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
@@ -893,9 +1204,15 @@ const SkillsSection = () => {
           className="mt-10"
         >
           <h3 className="text-xl font-semibold mb-4 text-gray-900">Tools I Use</h3>
-          <div className="flex flex-wrap gap-3">
+          <div ref={toolsWrapRef} className="flex flex-wrap gap-6">
             {tools.map((tool, i) => (
-              <ToolCard key={tool.name} tool={tool} index={i} />
+              <ToolCard
+                key={tool.name}
+                tool={tool}
+                index={i}
+                isActive={activeTool === tool.animation}
+                onToggle={handleToolClick}
+              />
             ))}
           </div>
         </motion.div>
