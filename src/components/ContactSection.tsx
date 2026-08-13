@@ -42,7 +42,6 @@ const ContactSection = () => {
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    // Check if keys are missing
     if (!serviceId || !templateId || !publicKey) {
       alert(
         "EmailJS keys missing!\n\nPlease check your .env file and restart the server."
@@ -185,15 +184,19 @@ const ContactSection = () => {
           </div>
         </div>
 
-        {/* Right Side Illustration */}
+        {/* Right Side Illustration with Banner */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isVisible ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="hidden lg:flex justify-center items-center"
         >
-          <div className="w-full h-80 rounded-2xl bg-gradient-to-br from-primary/10 via-transparent to-primary/20 flex items-center justify-center">
-            <div className="w-40 h-40 rounded-full bg-primary/20 blur-3xl" />
+          <div className="w-full h-80 rounded-2xl bg-white flex items-center justify-center overflow-hidden">
+            <img
+              src="/Banner.png"   // <-- must match exact file name
+              alt="Banner"
+              className="w-full h-full object-cover rounded-2xl"
+            />
           </div>
         </motion.div>
       </div>
